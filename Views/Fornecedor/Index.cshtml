@@ -1,0 +1,58 @@
+﻿@using ProjetoEstagio.Classes
+@model List<ProjetoEstagio.Models.Fornecedor>
+
+
+<h2 class="container-title">Clientes</h2>
+<div class="fornecedores-container">
+
+    <div class="card-wrapper">
+        @foreach(var tmp in Model)
+        {
+            Segmento Comercio = Segmento.Comercio;
+            Segmento Industria = Segmento.Industria;
+            Segmento Servico = Segmento.Servico;
+
+            string _segmento = "0";
+
+            if (tmp.segmento == Comercio)
+                _segmento = "Comércio";
+            else if (tmp.segmento == Servico)
+                _segmento = "Serviço";
+            else if(tmp.segmento == Industria )
+            {
+                _segmento = "Indústria";
+            }
+
+            string[] enderecoArray = tmp.endereco.Split(',');
+
+
+
+
+            <div class="card" style="width: 18rem;">
+                <img src="~/img/@tmp.fotoPerfil" class="fornecedores-imagem" alt="">
+                <div class="card-body">
+                    <h5 class="fornecedores-nome">@tmp.nome</h5>
+                    <p class="fornecedores-conteudo">
+
+                        <span class="conteudo-texto">CPNJ: @tmp.cnpj</span>
+                        <span class="conteudo-texto">Segmento: @_segmento</span>
+                        <span class="conteudo-texto">CEP: @tmp.cep</span>
+                        <span class="conteudo-texto">Estado: @enderecoArray[0]</span>
+                        <span class="conteudo-texto">Cidade: @enderecoArray[1]</span>
+                        <span class="conteudo-texto">Bairro: @enderecoArray[2]</span>
+                        <span class="conteudo-texto">Rua: @enderecoArray[3]</span>
+                        <span class="conteudo-texto">Número: @enderecoArray[4]</span>
+                        <span class="conteudo-texto">Complemento: @enderecoArray[5]</span>
+
+                    </p>
+                    <div class="card-buttons">
+                        <a asp-controller="Fornecedor" asp-action="Edit" asp-route-id="@tmp.id" ><button class="edit-button">Editar</button></a>
+                        <a asp-controller="Fornecedor" asp-action="Delete" asp-route-id="@tmp.id" ><button class="delete-button">Deletar</button></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+
+</div>

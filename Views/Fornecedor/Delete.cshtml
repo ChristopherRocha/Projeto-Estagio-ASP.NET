@@ -1,0 +1,57 @@
+﻿@using ProjetoEstagio.Classes;
+@model ProjetoEstagio.Models.Fornecedor;
+
+<div class="delete-text">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Tem Certeza que deseja excluir o fornecedor <strong>@Model.nome</strong>?</p>
+</div>
+
+
+<div class="fornecedores-container">
+    @{
+        Segmento Comercio = Segmento.Comercio;
+        Segmento Industria = Segmento.Industria;
+        Segmento Servico = Segmento.Servico;
+
+        string _segmento = "0";
+
+        if (Model.segmento == Comercio)
+            _segmento = "Comércio";
+        else if (Model.segmento == Servico)
+            _segmento = "Serviço";
+        else if (Model.segmento == Industria)
+        {
+            _segmento = "Indústria";
+        }
+        string[] enderecoArray = Model.endereco.Split(',');
+
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/@Model.fotoPerfil" class="fornecedores-imagem" alt="">
+            <div class="card-body">
+                <h5 class="fornecedores-nome">@Model.nome</h5>
+                <p class="fornecedores-conteudo">
+
+                    <span class="conteudo-texto">CPNJ: @Model.cnpj</span>
+                    <span class="conteudo-texto">Segmento: @Model</span>
+                    <span class="conteudo-texto">CEP: @Model.cep</span>
+                    <span class="conteudo-texto">Estado: @enderecoArray[0]</span>
+                    <span class="conteudo-texto">Cidade: @enderecoArray[1]</span>
+                    <span class="conteudo-texto">Bairro: @enderecoArray[2]</span>
+                    <span class="conteudo-texto">Rua: @enderecoArray[3]</span>
+                    <span class="conteudo-texto">Número: @enderecoArray[4]</span>
+                    <span class="conteudo-texto">Complemento: @enderecoArray[5]</span>
+
+                </p>
+                <div class="delete-groupbuttons">
+                    <form method="POST">
+                
+                        <button class="delete-button" type="submit">Excluir</button>   
+                    </form>
+                <a asp-controller="Fornecedor" asp-action="Index"><button class="cancel-button"> Cancelar </button></a>
+                </div>
+            </div>
+        </div>
+
+     }
+</div>

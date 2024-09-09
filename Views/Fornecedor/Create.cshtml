@@ -1,0 +1,103 @@
+﻿@model ProjetoEstagio.Models.Fornecedor;
+
+<div class="dados-container-wrapper">
+
+    <div class="dados-container">
+        <form method="post">
+            
+            <div class="dados-pessoais">
+                <h2>Dados Pessoais</h2>
+                <div>
+                    <h6>Escolha a imagem de foto de perfil</h6>
+                    <select asp-for="fotoPerfil" class="form-select" id="fotoPerfil">
+                        <option class="escolha" selected>Escolha uma opção</option>
+                        <option class="escolha" value="0">Bob Esponja</option>
+                        <option class="escolha" value="1">Batman</option>
+                        <option class="escolha" value="2">Patrick</option>
+                        <option class="escolha" value="3">Lula Molusco</option>
+                        <option class="escolha" value="4">Gary</option>
+                        <option class="escolha" value="5">Sr. Sirigueijo</option>
+                    </select>
+                </div>
+            
+
+                <div class="mb-4">
+                    <label asp-for="nome" class="form-label" >Nome</label>
+                    <input asp-for="nome" class="form-control" maxlength="100">
+                    <span asp-validation-for="nome" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="cnpj" class="form-label" >CNPJ</label>
+                    <input asp-for="cnpj" class="form-control" maxlength="14">
+                    <span asp-validation-for="cnpj" class="text-danger"></span>
+
+                </div>
+
+                <div>
+                    <h6>Segmento</h6>
+                    <select asp-for="segmento" class="form-select">
+                        <option class="escolha" selected>Escolha uma opção</option>
+                        <option class="escolha" value="0">Comércio</option>
+                        <option class="escolha" value="1">Indústria</option>
+                        <option class="escolha" value="2">Serviço</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <h2>Endereço</h2>
+            <div class="endereco">
+                
+                <div class="forms-wrapper">
+                    <div class="mb-3">
+                        <label asp-for="cep" class="form-label" >CEP</label>
+                        <input asp-for="cep" class="form-control" id="cep" maxlength="8">
+                        <span asp-validation-for="cep" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Estado</label>
+                        <input id="estado" class="form-control" maxlength="50">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cidade</label>
+                        <input id="cidade" class="form-control" maxlength="50">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" >Bairro</label>
+                        <input id="bairro" class="form-control" maxlength="45">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" >Rua</label>
+                        <input id="rua" class="form-control" maxlength="45">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" >Número</label>
+                        <input id="numero" class="form-control" maxlength="10">
+                        <span asp-validation-for="endereco" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" >Complemento</label>
+                        <input id="complemento" class="form-control" maxlength="55">
+                    </div>
+
+                </div>
+
+                <input type="hidden" asp-for="endereco" id="tmp">
+                <button type="submit" class="submit-button" onclick="ajustarEndereco()">Salvar</button>
+            </div>
+
+            
+
+        </form>
+    </div>
+
+</div>
